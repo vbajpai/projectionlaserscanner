@@ -33,4 +33,7 @@ Methodology
 
 ![Imgur](http://i.imgur.com/obTwO.png)
 
+Documents
+---------
 
+* [Slides](https://github.com/downloads/vbajpai/projectionlaserscanner/slides.pdf)
