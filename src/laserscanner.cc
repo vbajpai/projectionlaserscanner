@@ -4,15 +4,14 @@
 #include <fstream>
 
 /* opencv library */
-#include <cv.h>
-#include <highgui.h>
+#include <opencv2/opencv.hpp>
 
 /* posix library */
 #include <dirent.h>
 
 using namespace std;
 
-class Point3DRGB{
+class Point3DRGB {
 
 private:
 	CvPoint3D32f point3D;
