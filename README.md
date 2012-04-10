@@ -3,6 +3,10 @@ Projection-based 3D Laser Scanner
 
 ![Imgur](http://i.imgur.com/Hw5JM.png)
 
+Target Conference
+-----------------
+* [ISVC 2012](http://www.isvc.net/) - Deadline: May 7, 2012
+
 Methodology
 -----------
 
