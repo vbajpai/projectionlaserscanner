@@ -1,0 +1,262 @@
+#LyX 1.6.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass llncs
+\begin_preamble
+% This is LLNCS.DEM the demonstration file of
+% the LaTeX macro package from Springer-Verlag
+% for Lecture Notes in Computer Science,
+% version 2.3 for LaTeX2e
+%
+
+%
+  % allows for indexgeneration
+%
+
+\newenvironment{keywords}{
+       \list{}{\advance\topsep by0.35cm\relax\small
+       \leftmargin=1cm
+       \labelwidth=0.35cm
+       \listparindent=0.35cm
+       \itemindent\listparindent
+       \rightmargin\leftmargin}\item[\hskip\labelsep
+                                     \bfseries Keywords:]}
+     {\endlist}
+\end_preamble
+\use_default_options false
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\float_placement t
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 0
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+frontmatter
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagestyle
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+headings
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+mainmatter
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Title
+A Portable Low-Cost Archaeological 3D Imaging and Cataloging System
+\end_layout
+
+\begin_layout Author
+Vaibhav Bajpai
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+and
+\end_layout
+
+\end_inset
+
+ Anuj Sehgal
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+and
+\end_layout
+
+\end_inset
+
+ Daniel Cernea
+\end_layout
+
+\begin_layout Institute
+Computer Science, Jacobs University Bremen
+\begin_inset Newline newline
+\end_inset
+
+Campus Ring 1, 28759 Bremen, Germany
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+email{
+\backslash
+{v.bajpai, s.anuj, d.cernea
+\backslash
+}@jacobs-university.de}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Running LaTeX Title
+A Portable Low-Cost Archaeological 3D Imaging and Cataloging System
+\end_layout
+
+\begin_layout Author Running
+Vaibhav Bajpai and Anuj Sehgal and Jason Kadarusman
+\end_layout
+
+\begin_layout Abstract
+We will need to fill this in.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{keywords}
+\end_layout
+
+\begin_layout Plain Layout
+
+Come up with a few.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{keywords}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Section
+Related Work
+\end_layout
+
+\begin_layout Section
+An Overview of the Approach
+\end_layout
+
+\begin_layout Section
+Some Experimental Results
+\end_layout
+
+\begin_layout Section
+Evaluation and Comparison (maybe?)
+\end_layout
+
+\begin_layout Section
+Conclusion
+\end_layout
+
+\end_body
+\end_document
