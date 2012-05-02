@@ -1,79 +1,81 @@
-%% LyX 1.6.3 created this file.  For more info, see http://www.lyx.org/.
-%% Do not edit unless you really know what you are doing.
 \documentclass[english]{llncs}
+
 \usepackage[T1]{fontenc}
 \usepackage[latin9]{inputenc}
+\usepackage{babel}
+
+%----------------------------------------------------------------------
+%%----------------------- temporary packages -------------------------
+%----------------------------------------------------------------------
+\usepackage{scrtime}
+\usepackage{prelim2e}
+\usepackage{todonotes}
+\renewcommand{\PrelimWords}{\relax}
+\renewcommand{\PrelimText}{\footnotesize[\,\today\ at \thistime\,]}
+%----------------------------------------------------------------------
 
 \makeatletter
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
-% This is LLNCS.DEM the demonstration file of
-% the LaTeX macro package from Springer-Verlag
-% for Lecture Notes in Computer Science,
-% version 2.3 for LaTeX2e
-%
-
-%
-  % allows for indexgeneration
-%
-
 \newenvironment{keywords}{
        \list{}{\advance\topsep by0.35cm\relax\small
        \leftmargin=1cm
        \labelwidth=0.35cm
        \listparindent=0.35cm
        \itemindent\listparindent
-       \rightmargin\leftmargin}\item[\hskip\labelsep
-                                     \bfseries Keywords:]}
+       \rightmargin\leftmargin}
+			 \item[\hskip\labelsep\bfseries Keywords:]}
      {\endlist}
-
 \makeatother
 
-\usepackage{babel}
-
 \begin{document}
-\frontmatter \pagestyle{headings} 
 
+\frontmatter 
+	\pagestyle{headings} 
 \mainmatter 
-
 
 \title{A Portable Low-Cost Archaeological 3D Imaging and Cataloging System}
 
-
 \author{Vaibhav Bajpai\and Anuj Sehgal\and Daniel Cernea}
 
-
 \institute{Computer Science, Jacobs University Bremen\\
-Campus Ring 1, 28759 Bremen, Germany\\
+					 Campus Ring 1, 28759 Bremen, Germany\\
 \email{\{v.bajpai, s.anuj, d.cernea\}@jacobs-university.de}}
 
+\titlerunning{A Portable Low-Cost Archaeological 3D 
+						  Imaging and Cataloging System}
 
-\titlerunning{A Portable Low-Cost Archaeological 3D Imaging and Cataloging System}
-
-
-\authorrunning{Vaibhav Bajpai and Anuj Sehgal and Jason Kadarusman}
+\authorrunning{Vaibhav Bajpai and Anuj Sehgal and Daniel Cernea}
 \maketitle
+
 \begin{abstract}
 We will need to fill this in.
 \end{abstract}
+
 \begin{keywords}
 Come up with a few.
 \end{keywords}
 
-
 \section{Introduction}
-
+\label{section:introduction}
+\input{sections/introduction}
 
 \section{Related Work}
-
+\label{section:relatedwork}
+\input{sections/relatedwork}
 
 \section{An Overview of the Approach}
-
+\label{section:approach}
+\input{sections/approach}
 
 \section{Some Experimental Results}
-
+\label{section:results}
+\input{sections/results}
 
 \section{Evaluation and Comparison (maybe?)}
-
+\label{section:evaluation-comparison}
+\input{sections/evaluation-comparison}
 
 \section{Conclusion}
+\label{section:conclusion}
+\input{sections/conclusion}
+
 \end{document}
