@@ -1,0 +1,90 @@
+\begin{enumerate}
+	\item calibrate the camera
+		\begin{itemize}
+			\item Find Camera' Intrinsic Parameters
+	    \item Find Camera' Extrinsic Parameters
+		\end{itemize}
+	\item search for the laser line (and the object points)	
+		\begin{itemize}
+			\item Take a Difference Image to find the Laser
+	    \item Smoothen the Difference Image
+	    \item Color Threshold to remove everything else
+	    \item Apply Hough Transform
+	    \item Wrap the Points and Return the results
+		\end{itemize}	
+	\item generate a color 3D point cloud	
+		\begin{itemize}
+			\item Transform the Right Laser Points to Left Coordinate System
+	    \item Get the 3D Laser Points using Camera Extrinsics
+	    \item Get the Laser Plane Equation using 3 Laser Points
+	    \item Get the 3D Object Point by intersecting the
+	 					Laser Plane with Light Ray
+	    \item Save the 3D Object Points with their color values 
+						using Reference Image
+		\end{itemize}	
+	\item register different scans using 3DTK
+\end{enumerate}
+
+\begin{align}
+	\label{equation:3dlaserpoint}				
+	P_w &= 	\underbrace{s \times R^{-1} 
+ 					 							\times A^{-1} 
+					 							\times \begin{pmatrix}
+								  								u \\
+								  								v \\
+								  								1 \\
+								 								\end{pmatrix}
+										 }_\text{$\overrightarrow{b}$}
+					- 
+					\underbrace{
+											R^{-1} \times T					
+										 }_\text{$\overrightarrow{a}$} \\
+	\text{where}~	
+	\overrightarrow{a} &= \begin{pmatrix}
+													a_x \\
+													a_y \\
+													a_z \\
+												\end{pmatrix}, 
+	\overrightarrow{b} = \begin{pmatrix}
+													b_x \\
+													b_y \\
+													b_z \\
+												\end{pmatrix} \text{and}~
+	s = \frac{a_z}{b_z} \notag
+\end{align}
+
+\begin{align}
+	\label{equation:right2left}				
+	P_c &= R_1^{-1} \times P_k - R_1^{-1}T_1 \\
+	\text{where}~ 
+	P_k &= \begin{bmatrix}
+									R_2 \mid T_2
+ 				  \end{bmatrix} \times P_w \notag
+\end{align}
+
+\begin{align}
+	\label{equation:laserplaneequation}				
+	A_x + B_y + C_z + D &= 0 \\
+	\text{where}~
+	 \overrightarrow{N} &=
+	 \begin{pmatrix}
+	  A \\
+	  B \\
+	  C \\
+	 \end{pmatrix} \notag
+\end{align}
+
+\begin{align}
+	\label{equation:3dobjectpoint}				
+	P_w &= s \times R^{-1} 
+ 					 \times A^{-1} 
+					 \times \begin{pmatrix}
+								  u \\
+								  v \\
+								  1 \\
+								 \end{pmatrix}
+					- R^{-1} \times T \\
+	\text{where}~	
+	s &= \frac{\overrightarrow{N}\times\overrightarrow{a} - D}
+						{\overrightarrow{b}\times\overrightarrow{N}} \notag
+\end{align}
