@@ -1,138 +1,17 @@
+\todo{elevator pitch}
+
 \subsection{Camera Calibration}
-
-The first step in the process of reconstructing the 3D geometry of the object is to establish a mathematical relationship between the natural units of the camera with the physical units of the 3D world. We used camera calibration to learn the internal parameters of the camera and its distortion coefficients. The geometry is described in terms of camera's optical center and focal length.
-
-\begin{figure}[bht]
-\centering
-\subfigure{\includegraphics[width=.45\linewidth]{figures/calibrate-1}}\quad
-\subfigure{\includegraphics[width=.45\linewidth]{figures/calibrate-2}} \\
-\subfigure{\includegraphics[width=.45\linewidth]{figures/calibrate-3}}\quad
-\subfigure{\includegraphics[width=.45\linewidth]{figures/calibrate-4}}
-\label{figure:camera-calibration-intrinsics}
-\caption{Calculating the Camera's Intrinsic Parameters}
-\end{figure}
-
-We used OpenCV routines that are based on \cite{zhang:2000} \cite{brown:1971} and used a planar chessboard pattern as our calibration object. We rotated and translated the pattern to provide multiple views to get the precise information about the intrinsic parameters of the camera as shown in figure \ref{figure:camera-calibration-intrinsics}. 
-We used OpenCV routine \texttt{cvFindChessboardCorners()} to locate the corners and once we had enough corners from multiple view images, we used \texttt{cvCalibrateCamera2()} to get the intrinsic matrix $A$ as shown in equation \ref{equation:calibrate}.
-
-
-\begin{align}
-	\label{equation:calibrate}				
-	s \times 
-	\begin{bmatrix}
-		u \\ v \\	1 \\
-	\end{bmatrix} &= A \times \begin{bmatrix}
-															R \mid T
-	 				  								\end{bmatrix} 
-										 \times \begin{bmatrix}
-															x_w \\ y_w \\ z_w \\ 1
-														\end{bmatrix} \\
-	\text{where}~	 
-	A &= \begin{bmatrix}
-					f_x & 0 & c_x \\
-					0 & f_y & c_y \\
-					0 & 0 & 1 \\										
- 		 	 \end{bmatrix} \notag
-\end{align}
-
-The intrinsic matrix $A$ was later used to describe the \emph{pose} of the objects being scanned by the laser relative to the coordinate system of the camera. In order to determine this pose on both sides of the target object, the patterns were masked out to allow individual calculation as shown in figure \ref{figure:camera-calibration-extrinsics}. The parameters represented by $\begin{bmatrix}R \mid T\end{bmatrix}$ could then be separately calculated for both the sides by calling the OpenCV routine \texttt{cvFindExtrinsicCameraParams2()}. 
-
-\begin{figure}[bht]
-\centering
-\subfigure[$R_1 \mid T_1$]
-{\includegraphics[width=.45\linewidth]{figures/calibrate-5}} \quad
-\subfigure[$R_2 \mid T_2$]
-{\includegraphics[width=.45\linewidth]{figures/calibrate-6}}
-\label{figure:camera-calibration-extrinsics}
-\caption{Calculating the Camera's Extrinsic Parameters}
-\end{figure}
+\label{subsection:camera-calibration}
+\input{sections/approach/camera-calibration}
 
 \subsection{Identification of Laser and Object Points}
-\begin{itemize}
-	\item Take a Difference Image to find the Laser
-  \item Smoothen the Difference Image
-  \item Color Threshold to remove everything else
-  \item Apply Hough Transform
-  \item Wrap the Points and Return the results
-\end{itemize}	
+\label{subsection:search-laser}
+\input{sections/approach/search-laser}
 
 \subsection{Generation of Point Cloud}
-\begin{itemize}
-	\item Transform the Right Laser Points to Left Coordinate System
-  \item Get the 3D Laser Points using Camera Extrinsics
-  \item Get the Laser Plane Equation using 3 Laser Points
-  \item Get the 3D Object Point by intersecting the
-				Laser Plane with Light Ray
-  \item Save the 3D Object Points with their color values 
-				using Reference Image
-\end{itemize}	
+\label{subsection:generate-pointcloud}
+\input{sections/approach/generate-pointcloud}
 
 \subsection{Point Cloud Processing and Registration}
-\begin{itemize}
-	\item 3DTK
-\end{itemize}	
-
-
-\begin{align}
-	\label{equation:3dlaserpoint}				
-	P_w &= 	\underbrace{s \times R^{-1} 
- 					 							\times A^{-1} 
-					 							\times \begin{pmatrix}
-								  								u \\
-								  								v \\
-								  								1 \\
-								 								\end{pmatrix}
-										 }_\text{$\overrightarrow{b}$}
-					- 
-					\underbrace{
-											R^{-1} \times T					
-										 }_\text{$\overrightarrow{a}$} \\
-	\text{where}~	
-	\overrightarrow{a} &= \begin{pmatrix}
-													a_x \\
-													a_y \\
-													a_z \\
-												\end{pmatrix}, 
-	\overrightarrow{b} = \begin{pmatrix}
-													b_x \\
-													b_y \\
-													b_z \\
-												\end{pmatrix} \text{and}~
-	s = \frac{a_z}{b_z} \notag
-\end{align}
-
-\begin{align}
-	\label{equation:right2left}				
-	P_c &= R_1^{-1} \times P_k - R_1^{-1}T_1 \\
-	\text{where}~ 
-	P_k &= \begin{bmatrix}
-									R_2 \mid T_2
- 				  \end{bmatrix} \times P_w \notag
-\end{align}
-
-\begin{align}
-	\label{equation:laserplaneequation}				
-	A_x + B_y + C_z + D &= 0 \\
-	\text{where}~
-	 \overrightarrow{N} &=
-	 \begin{pmatrix}
-	  A \\
-	  B \\
-	  C \\
-	 \end{pmatrix} \notag
-\end{align}
-
-\begin{align}
-	\label{equation:3dobjectpoint}				
-	P_w &= s \times R^{-1} 
- 					 \times A^{-1} 
-					 \times \begin{pmatrix}
-								  u \\
-								  v \\
-								  1 \\
-								 \end{pmatrix}
-					- R^{-1} \times T \\
-	\text{where}~	
-	s &= \frac{\overrightarrow{N}\times\overrightarrow{a} - D}
-						{\overrightarrow{b}\times\overrightarrow{N}} \notag
-\end{align}
+\label{subsection:registration}
+\input{sections/approach/registration}
