@@ -12,8 +12,8 @@ The first step in the process of reconstructing the 3D geometry of the object is
 \caption{Calculating the Camera's Intrinsic Parameters}
 \end{figure}
 
-We used OpenCV routines that are based on \cite{zhang:2000}, \cite{brown:1971} and used a planar chessboard pattern as our calibration object. We rotated and translated the pattern to provide multiple views to get the precise information about the intrinsic parameters of the camera as shown in figure \ref{figure:camera-calibration-intrinsics}. 
-We used OpenCV's \texttt{cvFindChessboardCorners()} to locate the corners and once we had enough chessboard corners from multiple view images, we used \texttt{cvCalibrateCamera2()} to get the intrinsic matrix $A$ as shown in equation \ref{equation:calibrate}.
+We used OpenCV routines that are based on \cite{zhang:2000} \cite{brown:1971} and used a planar chessboard pattern as our calibration object. We rotated and translated the pattern to provide multiple views to get the precise information about the intrinsic parameters of the camera as shown in figure \ref{figure:camera-calibration-intrinsics}. 
+We used OpenCV routine \texttt{cvFindChessboardCorners()} to locate the corners and once we had enough corners from multiple view images, we used \texttt{cvCalibrateCamera2()} to get the intrinsic matrix $A$ as shown in equation \ref{equation:calibrate}.
 
 
 \begin{align}
@@ -35,7 +35,7 @@ We used OpenCV's \texttt{cvFindChessboardCorners()} to locate the corners and on
  		 	 \end{bmatrix} \notag
 \end{align}
 
-The intrinsic matrix $A$ was later used to describe the \emph{pose} of the objects being scanned by the laser relative to the coordinate system of the camera by receiving the the rotation ($R$) and translation ($T$) matrices as shown in equation \ref{equation:calibrate} by calling the OpenCV routine \texttt{cvFindExtrinsicCameraParams2()}.
+The intrinsic matrix $A$ was later used to describe the \emph{pose} of the objects being scanned by the laser relative to the coordinate system of the camera. In order to determine this pose on both sides of the target object, the patterns were masked out to allow individual calculation as shown in figure \ref{figure:camera-calibration-extrinsics}. The parameters represented by $\begin{bmatrix}R \mid T\end{bmatrix}$ could then be separately calculated for both the sides by calling the OpenCV routine \texttt{cvFindExtrinsicCameraParams2()}. 
 
 \begin{figure}[bht]
 \centering
