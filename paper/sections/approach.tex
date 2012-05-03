@@ -1,31 +1,77 @@
-\todo{approach}
+\subsection{Camera Calibration}
 
-\begin{enumerate}
-	\item calibrate the camera \cite{tsai:1987}
-		\begin{itemize}
-			\item Find Camera' Intrinsic Parameters
-	    \item Find Camera' Extrinsic Parameters
-		\end{itemize}
-	\item search for the laser line (and the object points)	
-		\begin{itemize}
-			\item Take a Difference Image to find the Laser
-	    \item Smoothen the Difference Image
-	    \item Color Threshold to remove everything else
-	    \item Apply Hough Transform
-	    \item Wrap the Points and Return the results
-		\end{itemize}	
-	\item generate a color 3D point cloud	
-		\begin{itemize}
-			\item Transform the Right Laser Points to Left Coordinate System
-	    \item Get the 3D Laser Points using Camera Extrinsics
-	    \item Get the Laser Plane Equation using 3 Laser Points
-	    \item Get the 3D Object Point by intersecting the
-	 					Laser Plane with Light Ray
-	    \item Save the 3D Object Points with their color values 
-						using Reference Image
-		\end{itemize}	
-	\item register different scans using 3DTK
-\end{enumerate}
+The first step in the process of reconstructing the 3D geometry of the object is to establish a mathematical relationship between the natural units of the camera with the physical units of the 3D world. We used camera calibration to learn the internal parameters of the camera and its distortion coefficients. The geometry is described in terms of camera's optical center and focal length.
+
+\begin{figure}[bht]
+\centering
+\subfigure{\includegraphics[width=.45\linewidth]{figures/calibrate-1}}\quad
+\subfigure{\includegraphics[width=.45\linewidth]{figures/calibrate-2}} \\
+\subfigure{\includegraphics[width=.45\linewidth]{figures/calibrate-3}}\quad
+\subfigure{\includegraphics[width=.45\linewidth]{figures/calibrate-4}}
+\label{figure:camera-calibration-intrinsics}
+\caption{Calculating the Camera's Intrinsic Parameters}
+\end{figure}
+
+We used OpenCV routines that are based on \cite{zhang:2000}, \cite{brown:1971} and used a planar chessboard pattern as our calibration object. We rotated and translated the pattern to provide multiple views to get the precise information about the intrinsic parameters of the camera as shown in figure \ref{figure:camera-calibration-intrinsics}. 
+We used OpenCV's \texttt{cvFindChessboardCorners()} to locate the corners and once we had enough chessboard corners from multiple view images, we used \texttt{cvCalibrateCamera2()} to get the intrinsic matrix $A$ as shown in equation \ref{equation:calibrate}.
+
+
+\begin{align}
+	\label{equation:calibrate}				
+	s \times 
+	\begin{bmatrix}
+		u \\ v \\	1 \\
+	\end{bmatrix} &= A \times \begin{bmatrix}
+															R \mid T
+	 				  								\end{bmatrix} 
+										 \times \begin{bmatrix}
+															x_w \\ y_w \\ z_w \\ 1
+														\end{bmatrix} \\
+	\text{where}~	 
+	A &= \begin{bmatrix}
+					f_x & 0 & c_x \\
+					0 & f_y & c_y \\
+					0 & 0 & 1 \\										
+ 		 	 \end{bmatrix} \notag
+\end{align}
+
+The intrinsic matrix $A$ was later used to describe the \emph{pose} of the objects being scanned by the laser relative to the coordinate system of the camera by receiving the the rotation ($R$) and translation ($T$) matrices as shown in equation \ref{equation:calibrate} by calling the OpenCV routine \texttt{cvFindExtrinsicCameraParams2()}.
+
+\begin{figure}[bht]
+\centering
+\subfigure[$R_1 \mid T_1$]
+{\includegraphics[width=.45\linewidth]{figures/calibrate-5}} \quad
+\subfigure[$R_2 \mid T_2$]
+{\includegraphics[width=.45\linewidth]{figures/calibrate-6}}
+\label{figure:camera-calibration-extrinsics}
+\caption{Calculating the Camera's Extrinsic Parameters}
+\end{figure}
+
+\subsection{Identification of Laser and Object Points}
+\begin{itemize}
+	\item Take a Difference Image to find the Laser
+  \item Smoothen the Difference Image
+  \item Color Threshold to remove everything else
+  \item Apply Hough Transform
+  \item Wrap the Points and Return the results
+\end{itemize}	
+
+\subsection{Generation of Point Cloud}
+\begin{itemize}
+	\item Transform the Right Laser Points to Left Coordinate System
+  \item Get the 3D Laser Points using Camera Extrinsics
+  \item Get the Laser Plane Equation using 3 Laser Points
+  \item Get the 3D Object Point by intersecting the
+				Laser Plane with Light Ray
+  \item Save the 3D Object Points with their color values 
+				using Reference Image
+\end{itemize}	
+
+\subsection{Point Cloud Processing and Registration}
+\begin{itemize}
+	\item 3DTK
+\end{itemize}	
+
 
 \begin{align}
 	\label{equation:3dlaserpoint}				

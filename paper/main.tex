@@ -1,5 +1,4 @@
 \documentclass[english]{llncs}
-
 \usepackage[T1]{fontenc}
 \usepackage[latin9]{inputenc}
 \usepackage{babel}
@@ -11,11 +10,13 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
 %----------------------------------------------------------------------
 
 
 %----------------------------------------------------------------------
-%%----------------------- temporary packages --------------------------
+%----------------------- temporary packages ---------------------------
 %----------------------------------------------------------------------
 \usepackage{scrtime}
 \usepackage{prelim2e}
@@ -57,9 +58,7 @@
 \maketitle
 
 \begin{abstract}
-
-This paper introduces a cross-platform low-cost system for 3D object reconstruction using a projection-based laser scanner. It uses contact-free measurement techniques for 3D object reconstruction and fast surface registration using \ac{ICP}. The only hardware requirements are a simple commercial hand-held laser and a standard camera. The camera is initially calibrated using Tsai's camera calibration method so that its external and internal parameters are exactly known. The visible intersection with the background is used to find the exact 3D pose of the laser plane. This laser plane is used to triangulate new 3D point coordinates of the object’s surface. The point clouds obtained are processed using \ac{3DTK} which includes an automatic high-accurate registration process and a fast 3D viewer.
-
+This paper introduces a cross-platform low-cost system for 3D object reconstruction using a projection-based laser scanner. It uses contact-free measurement techniques for 3D object reconstruction and fast surface registration using \ac{ICP}. The only hardware requirements are a simple commercial hand-held laser and a standard camera. The camera is initially calibrated using Zhang's camera calibration method so that its external and internal parameters are exactly known. The visible intersection with the background is used to find the exact 3D pose of the laser plane. This laser plane is used to triangulate new 3D point coordinates of the object's surface. The point clouds obtained are processed using \ac{3DTK} which includes an automatic high-accurate registration process and a fast 3D viewer.
 \end{abstract}
 
 \begin{keywords}
@@ -93,10 +92,10 @@ This paper introduces a cross-platform low-cost system for 3D object reconstruct
 \input{sections/conclusion}
 
 \bibliographystyle{splncs}
-\bibliography{bibliography}
+\bibliography{ref}
 
 \begin{acronym}[ICP]
-    \acro{ICP}{Iterative Closest Path}
+    \acro{ICP}{Iterative Closest Point}
 		\acro{3DTK}{3D Toolkit}
 \end{acronym}
 
