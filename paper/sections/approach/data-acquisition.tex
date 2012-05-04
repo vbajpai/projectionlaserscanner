@@ -1,11 +1,11 @@
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=0.5\linewidth]{figures/introduction}
-\label{figure:acquisition}
 \caption{Data Acquisition}
+\label{figure:acquisition}
 \end{figure}
 
-We used a standard digital camera to capture multiple runs of a hand-held laser sweeping across the object as shown in figure \ref{figure:acquisition}. Since the videos were stored in raw format which cannot be directly processed by OpenCV, we used \texttt{mplayer} to extract individual frames at the rate of 5 frames per second.
+We used a standard digital camera to capture multiple runs of a hand-held laser sweeping across the object as shown in figure \ref{figure:acquisition}. Since the videos were stored in raw format which cannot be directly processed by OpenCV \cite{bradski:2008}, we used \texttt{mplayer} to extract individual frames at the rate of 5 frames per second.
 
 \begin{verbatim}
 $ mplayer -demuxer rawvideo \
@@ -14,4 +14,3 @@ $ mplayer -demuxer rawvideo \
 \end{verbatim}
 
 These frames were then later read into memory by calling the OpenCV routine \texttt{cvLoadImage()} with a \texttt{CV\_LOAD\_IMAGE\_UNCHANGED} flag. The routine allocates an image data structure and returns a pointer to a struct of type \texttt{IplImage}
-
