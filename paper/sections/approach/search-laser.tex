@@ -27,10 +27,10 @@ C = A &- B \\
 \begin{figure}[ht!]
 \centering
 \subfigure[Difference Image]
-{\includegraphics[width=.45\linewidth]{figures/gauss-1}
+{\includegraphics[width=.45\linewidth]{figures/difference-3}
 \label{subfigure:gauss-A}} \quad
 \subfigure[Gaussian Smoothened Image]
-{\includegraphics[width=.45\linewidth]{figures/gauss-2}
+{\includegraphics[width=.45\linewidth]{figures/gauss}
 \label{subfigure:gauss-B}} \hfill
 \caption{Gaussian Smoothing the Difference Image}
 \label{figure:gauss}
@@ -41,10 +41,10 @@ In order to reduce the noise in the difference image, we used the OpenCV routine
 \begin{figure}[ht!]
 \centering
 \subfigure[Image with Outliers]
-{\includegraphics[width=.45\linewidth]{figures/colorthres-1}
+{\includegraphics[width=.45\linewidth]{figures/gauss}
 \label{subfigure:colorthres-A}} \quad
 \subfigure[Image without Outliers]
-{\includegraphics[width=.45\linewidth]{figures/colorthres-2}
+{\includegraphics[width=.45\linewidth]{figures/colorthres}
 \label{subfigure:colorthres-B}} \hfill
 \caption{Color Thresholding to Remove Outliers}
 \label{figure:color-thres}
@@ -55,10 +55,10 @@ In order to blacken out (remove) all outliers and keep just the pixels represent
 \begin{figure}[ht!]
 \centering
 \subfigure[Before Transformation]
-{\includegraphics[width=.45\linewidth]{figures/hough-1}
+{\includegraphics[width=.45\linewidth]{figures/colorthres}
 \label{subfigure:hough-A}} \quad
 \subfigure[After Transformation]
-{\includegraphics[width=.45\linewidth]{figures/hough-2}
+{\includegraphics[width=.45\linewidth]{figures/hough}
 \label{subfigure:hough-B}} \hfill
 \caption{Hough Transformation}
 \label{figure:hough-transform}
