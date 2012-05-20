@@ -279,7 +279,16 @@ LaserScanner::scanImages(int numberOfImages,
 	
 int 
 main(int argc, char* argv[]){
-	
+
+const char usage_string[] =
+  " <number of images>\n"
+  "                     <image directory>\n"
+  "                     <reference image fine>\n"
+  "                     <left checkerboard file>\n"
+  "                     <right checkerboard file>\n"
+  "                     <destination directory>";
+
+
 	if (argc == 7) {		
 		
 		/* calibrate the camera */	
@@ -299,10 +308,8 @@ main(int argc, char* argv[]){
 		
 	}
 	else {
-		cout << "usage: laserscanner ";
-		cout << "<number of images> <image directory> <reference image file>";
-		cout << "<left checkerboard file> <right checkerboard file>";
-		cout << "<destination directory>";
+		cout << "\nprojection-based 3D laser scanner\n\n";
+		cout << "usage: " << argv[0] << usage_string << endl;
 	}	
 	return 0;
 }
