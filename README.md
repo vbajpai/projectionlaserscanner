@@ -1,14 +1,46 @@
 Projection-based 3D Laser Scanner
 ---------------------------------
+- - -
 
 ![Imgur](http://i.imgur.com/Hw5JM.png)
 
+
+Installing on Mac OS X
+----------------------
+- - -
+
+	>> brew install opencv
+	
+	[projectionlaserscanner] >> make
+	
+
+Installing on Ubuntu
+--------------------
+- - -
+
+	>> sudo apt-get install libopencv-dev
+	
+	[projectionlaserscanner] >> make
+	
+
+Running
+-------
+- - -
+
+	>> bin/plscanner		
+
+
+
+
+
 Target Conference
 -----------------
+- - -
 * [ISVC 2012](http://www.isvc.net/) - Deadline: May 7, 2012
 
 Methodology
 -----------
+- - -
 
 * Calibrate the Camera
 	* Find Camera' Intrinsic Parameters
@@ -39,5 +71,6 @@ Methodology
 
 Documents
 ---------
+- - -
 
 * [Slides](https://github.com/downloads/vbajpai/projectionlaserscanner/slides.pdf)
