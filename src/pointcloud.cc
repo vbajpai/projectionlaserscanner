@@ -301,7 +301,7 @@ PointCloud::generate(IplImage* referenceImage){
 		/* get 3D points of the object */
 		
 		
-		for (int i=0; i < object.size(); i++) {
+		for (unsigned int i=0; i < object.size(); i++) {
 			
 			CvMat* objectPoint_3D = get3DPoint(object[i], LEFT_SYSTEM, &plane);
 			double x = cvmGet(objectPoint_3D, 0, 0);

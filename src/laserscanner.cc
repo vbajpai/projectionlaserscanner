@@ -60,7 +60,7 @@ LaserScanner::savePointCloud(vector<Point3DRGB*> pointCloud,
 		
 		outFile3D << pointCloud.size() << "\n";		
 		
-		for (int i=0; i < pointCloud.size(); i++) {
+		for (unsigned int i=0; i < pointCloud.size(); i++) {
 			
 			Point3DRGB *pointObject = pointCloud[i];			
 			CvPoint3D32f point = pointObject->getPoint();
