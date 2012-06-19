@@ -13,13 +13,13 @@ the homogenous coordinate system.
 
 \begin{align}
 	\label{equation:3dlaserpoint}
-	P_w &= 	\underbrace{s \times R^{-1}
- 					 							\times A^{-1}
- 												\times P_c
+	P_w &= 	\underbrace{s \cdot R^{-1}
+ 					 							\cdot A^{-1}
+ 												\cdot P_c
 										 }_\text{$\overrightarrow{b}$}
 					-
 					\underbrace{
-											R^{-1} \times T
+											R^{-1} \cdot T
 										 }_\text{$\overrightarrow{a}$} \\
 	\text{where}~
 	P_c &= \begin{pmatrix}
@@ -56,7 +56,7 @@ target object to the coordinate system of the left side using equation
 
 With all the 3D laser surface points in a common coordinate system, we
 randomly choose 3 points to generate the laser plane equation. Using the
-coefficients of this equation, we could define the normal to the plane
+coefficients of this equation, we defined the normal to the plane
 $(\overrightarrow{N})$ using equation \ref{equation:laserplaneequation}.
 
 \begin{align}
