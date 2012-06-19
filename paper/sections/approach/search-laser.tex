@@ -1,13 +1,13 @@
 \begin{figure}[ht!]
 \centering
 \subfigure[$A$]
-{\includegraphics[width=.31\linewidth]{figures/difference-1}
+{\includegraphics[width=.45\linewidth]{figures/difference-1}
  \label{subfigure:diff-A}} \hfill
 \subfigure[$B$]
-{\includegraphics[width=.31\linewidth]{figures/difference-2}
-\label{subfigure:diff-B}} \hfill
+{\includegraphics[width=.45\linewidth]{figures/difference-2}
+\label{subfigure:diff-B}} \\
 \subfigure[$C$]
-{\includegraphics[width=.31\linewidth]{figures/difference-3}
+{\includegraphics[width=.45\linewidth]{figures/difference-3}
 \label{subfigure:diff-C}} \hfill
 \caption{Using Image Difference to Find the Laser}
 \label{figure:difference-image}
@@ -27,6 +27,12 @@ C = A &- B \\
 &C~ \text{is the difference image in figure \ref{subfigure:diff-C}} \notag
 \end{align}
 
+To reduce the noise in the difference image, we used the OpenCV
+routine \texttt{cvSmooth()} to convolve the image with a Gaussian kernel
+function as shown in figure \ref{figure:gauss}. It not only helped us to
+remove the camera artifacts but also reduce the information content in the
+image.
+
 \begin{figure}[ht!]
 \centering
 \subfigure[Difference Image]
@@ -39,11 +45,13 @@ C = A &- B \\
 \label{figure:gauss}
 \end{figure}
 
-To reduce the noise in the difference image, we used the OpenCV
-routine \texttt{cvSmooth()} to convolve the image with a Gaussian kernel
-function as shown in figure \ref{figure:gauss}. It not only helped us to
-remove the camera artifacts but also reduce the information content in the
-image.
+In order to remove all outliers and keep just the pixels
+representing the red laser line as shown in figure \ref{figure:color-thres},
+we used a pre-defined threshold value for the intensity of the red pixels. In
+order to restrict this thresholding only along the red channel, we used
+\texttt{cvSplit()} to split the three-channel (R,G,B) difference image into
+separate one-channel image planes. We used \texttt{cvGet2D()} and
+\texttt{cvSet2D()} to work on the scalar intensity values of the pixels.
 
 \begin{figure}[ht!]
 \centering
@@ -55,26 +63,6 @@ image.
 \label{subfigure:colorthres-B}} \hfill
 \caption{Color Thresholding to Remove Outliers}
 \label{figure:color-thres}
-\end{figure}
-
-In order to remove all outliers and keep just the pixels
-representing the red laser line as shown in figure \ref{figure:color-thres},
-we used a pre-defined threshold value for the intensity of the red pixels. In
-order to restrict this thresholding only along the red channel, we used
-\texttt{cvSplit()} to split the three-channel (R,G,B) difference image into
-separate one-channel image planes. We used \texttt{cvGet2D()} and
-\texttt{cvSet2D()} to work on the scalar intensity values of the pixels.
-
-\begin{figure}[ht!]
-\centering
-\subfigure[Before Transformation]
-{\includegraphics[width=.45\linewidth]{figures/colorthres}
-\label{subfigure:hough-A}} \quad
-\subfigure[After Transformation]
-{\includegraphics[width=.45\linewidth]{figures/hough}
-\label{subfigure:hough-B}} \hfill
-\caption{Hough Transformation}
-\label{figure:hough-transform}
 \end{figure}
 
 We use \ac{PPHT} \cite{kiryati:1991}, \cite{matas:2000} using OpenCV routine
@@ -90,3 +78,15 @@ perform the Canny Edge Detection \cite{canny:1986} before \ac{PPHT}. The two
 hough line equations on either side of the object were used to learn the laser
 line points, while the points not identified as part of the hough line were
 taken as target object points.
+
+\begin{figure}[ht!]
+\centering
+\subfigure[Before Transformation]
+{\includegraphics[width=.45\linewidth]{figures/colorthres}
+\label{subfigure:hough-A}} \quad
+\subfigure[After Transformation]
+{\includegraphics[width=.45\linewidth]{figures/hough}
+\label{subfigure:hough-B}} \hfill
+\caption{Hough Transformation}
+\label{figure:hough-transform}
+\end{figure}
