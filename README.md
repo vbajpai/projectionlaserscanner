@@ -10,33 +10,31 @@ Installing on Mac OS X
 - - -
 
 	>> brew install opencv
-	
+
 	[projectionlaserscanner] >> make
-	
+
 
 Installing on Ubuntu
 --------------------
 - - -
 
 	>> sudo apt-get install libopencv-dev
-	
+
 	[projectionlaserscanner] >> make
-	
+
 
 Running
 -------
 - - -
 
-	>> bin/plscanner		
-
-
-
+	>> bin/plscanner
 
 
 Target Conference
 -----------------
 - - -
-* [ISVC 2012](http://www.isvc.net/) - Deadline: May 7, 2012
+* [IEEE Germany Student Conference 2012](www.ieee-student-conference.de/)  
+  Deadline July 23, 2012
 
 Methodology
 -----------
@@ -44,7 +42,7 @@ Methodology
 
 * Calibrate the Camera
 	* Find Camera' Intrinsic Parameters
-    * Find Camera' Extrinsic Parameters 
+    * Find Camera' Extrinsic Parameters
 
 ![Imgur](http://i.imgur.com/T4jhZ.png)
 

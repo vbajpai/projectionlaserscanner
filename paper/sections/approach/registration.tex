@@ -1,10 +1,19 @@
-The generated point cloud was saved as a text file in the \texttt{UOS\_RGB} file format. The first line represented the number of 3D object surface points and the following lines had $(x, y, z)$ coordinates of each point respectively with their $(R, G, B)$ information defined in a left-handed coordinate system. 
-Each complete scan of the target object was in this way stored as a new \texttt{scanXXX.3d} file where \texttt{XXX} determines the index of the scan. 
+The generated point cloud was saved as a text file in the \texttt{UOS\_RGB}
+file format. The first line represented the number of 3D object surface points
+and the following lines had $(x, y, z)$ coordinates of each point respectively
+with their $(R, G, B)$ information defined in a left-handed coordinate system.
+Each complete scan of the target object was in this way stored as a new
+\texttt{scanXXX.3d} file where \texttt{XXX} determines the index of the scan.
 
-We used \ac{ICP} \cite{besl:1992} to register the two points from different scans into a common coordinate system using equation \ref{equation:icp}. The algorithm requires an initial starting guess of relative poses $(x, y, z, \theta_x, \theta_y, \theta_z)$ to compute the rotation and translation to fit the 3D geometrical models together. Since our system did not have an odometer, we set the initial pose to 0 and let it extrapolate further. 
+We used \ac{ICP} \cite{besl:1992} to register the two points from different
+scans into a common coordinate system using equation \ref{equation:icp}. The
+algorithm requires an initial starting guess of relative poses $(x, y, z,
+\theta_x, \theta_y, \theta_z)$ to compute the rotation and translation to fit
+the 3D geometrical models together. Since our system did not have an odometer,
+we set the initial pose to 0 and let it extrapolate further.
 
 \begin{align}
-	\label{equation:icp}				
+	\label{equation:icp}
 	E(R, t) &= \sum_{i=1}^{N_m} \sum_{j=1}^{N_d} w_{i,j}\| m_i - (Rd_j + t) \|^2 \notag \\
 	\text{where}~ N_m &= \text{number of points in model set}~ M \notag \\
 						N_d &= \text{number of points in data set}~ D \notag \\
@@ -12,4 +21,8 @@ We used \ac{ICP} \cite{besl:1992} to register the two points from different scan
 						w_{i,j} &= 0, ~\text{otherwise}
 \end{align}
 
-We used 6D \ac{SLAM} from \ac{3DTK} \cite{3dtk:2012} for automatic scan registration that uses cached kd-trees for fast iterative \ac{ICP} match \cite{nuchter:2007}. The \texttt{slam6D} component produced a \texttt{frames} file that was used by the \texttt{show} component to visualize the 3D model of the target object along with its color information.
+We used 6D \ac{SLAM} from \ac{3DTK} \cite{3dtk:2012} for automatic scan
+registration that uses cached kd-trees for fast iterative \ac{ICP} match
+\cite{nuchter:2007}. The \texttt{slam6D} component produced a \texttt{frames}
+file that was used by the \texttt{show} component to visualize the 3D model of
+the target object along with its color information.

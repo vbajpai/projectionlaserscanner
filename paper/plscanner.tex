@@ -1,10 +1,7 @@
-\documentclass[english]{llncs}
-\usepackage[T1]{fontenc}
-\usepackage[latin9]{inputenc}
-\usepackage{babel}
+\documentclass[conference]{IEEEtran}
 
 %----------------------------------------------------------------------
-%---------------------packages added on anuj' base -------------------
+%---------------------packages added on base  -------------------------
 %----------------------------------------------------------------------
 \usepackage[nolist]{acronym}
 \usepackage{amsmath}
@@ -12,6 +9,9 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{subfigure}
+\usepackage{hyperref}
+
+\renewcommand{\ttdefault}{cmtt}
 %----------------------------------------------------------------------
 
 
@@ -25,47 +25,33 @@
 \renewcommand{\PrelimText}{\footnotesize[\,\today\ at \thistime\,]}
 %----------------------------------------------------------------------
 
-\makeatletter
-\newenvironment{keywords}{
-       \list{}{\advance\topsep by0.35cm\relax\small
-       \leftmargin=1cm
-       \labelwidth=0.35cm
-       \listparindent=0.35cm
-       \itemindent\listparindent
-       \rightmargin\leftmargin}
-			 \item[\hskip\labelsep\bfseries Keywords:]}
-     {\endlist}
-\makeatother
-
 \begin{document}
-
-\frontmatter 
-	\pagestyle{headings} 
-\mainmatter 
 
 \title{A Portable Low-Cost Archaeological 3D Imaging and Cataloging System}
 
-\author{Vaibhav Bajpai\and Anuj Sehgal\and Daniel Cernea}
+\author{
+  Vaibhav Bajpai and Vladislav Perelman \\
+  School of Engineering and Computer Science\\
+  Campus Ring 1, Jacobs University Bremen\\
+  \texttt{\{v.bajpai, v.perelman\}@jacobs-university.de}
+}
 
-\institute{Computer Science, Jacobs University Bremen\\
-					 Campus Ring 1, 28759 Bremen, Germany\\
-\email{\{v.bajpai, s.anuj, d.cernea\}@jacobs-university.de}}
-
-\titlerunning{A Portable Low-Cost Archaeological 3D 
-						  Imaging and Cataloging System}
-
-\authorrunning{Vaibhav Bajpai and Anuj Sehgal and Daniel Cernea}
 \maketitle
 
 \begin{abstract}
-This paper introduces a cross-platform low-cost system for 3D object reconstruction using a projection-based laser scanner. It uses contact-free measurement techniques for 3D object reconstruction and fast surface registration using \ac{ICP} \cite{besl:1992}. The only hardware requirements are a simple commercial hand-held laser and a standard camera. The camera is initially calibrated using Zhang's camera calibration method so that its external and internal parameters are exactly known. The visible intersection with the background is used to find the exact 3D pose of the laser plane. This laser plane is used to triangulate new 3D point coordinates of the object's surface. The point clouds obtained are processed using \ac{3DTK} \cite{3dtk:2012} which includes an automatic high-accurate registration process and a fast 3D viewer.
+This paper introduces a cross-platform low-cost system for 3D object
+reconstruction using a projection-based laser scanner. It uses contact-free
+measurement techniques for 3D object reconstruction and fast surface
+registration using \ac{ICP} \cite{besl:1992}. The only hardware requirements
+are a simple hand-held laser line projector and a standard camera. The camera
+is initially calibrated using Zhang's camera calibration method so that its
+external and internal parameters are exactly known. The visible intersection
+with the background is used to find the exact 3D pose of the laser plane. This
+laser plane is used to triangulate new 3D point coordinates of the
+object's surface. The point clouds obtained are processed using \ac{3DTK}
+\cite{3dtk:2012} which includes an automatic high-accurate registration
+process and a fast 3D viewer.
 \end{abstract}
-
-\begin{keywords}
-	Camera Calibration, Hough Transformation, 
-	3D Reconstruction, Scan Registration, 
-	Hand-Held Laser, Image Filters, Color Models
-\end{keywords}
 
 \section{Introduction}
 \label{section:introduction}
@@ -83,10 +69,6 @@ This paper introduces a cross-platform low-cost system for 3D object reconstruct
 \label{section:results}
 \input{sections/results}
 
-% \section{Evaluation and Comparison (maybe?)}
-% \label{section:evaluation-comparison}
-% \input{sections/evaluation-comparison}
-
 \section{Conclusion}
 \label{section:conclusion}
 \input{sections/conclusion}
@@ -98,7 +80,7 @@ This paper introduces a cross-platform low-cost system for 3D object reconstruct
     \acro{ICP}{Iterative Closest Point}
 		\acro{3DTK}{3D Toolkit}
 		\acro{PPHT}{Probabilistic Progressive Hough Transform}
-		\acro{SLAM}{Simultaneous Localization and Mapping}		
+		\acro{SLAM}{Simultaneous Localization and Mapping}
 \end{acronym}
 
 \end{document}

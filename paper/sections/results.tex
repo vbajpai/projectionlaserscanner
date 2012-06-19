@@ -6,7 +6,11 @@
 \caption{Results}
 \end{figure}
 
-The imaging system in addition to the source directory, expects a reference image without the laser stripe and two images of the individual background patterns used for calibration as input. The program saves the point cloud thus obtained in a destination directory which is used by the \ac{3DTK} components for processing and visualization as shown below. 
+The imaging system in addition to the source directory, expects a reference
+image without the laser stripe and two images of the individual background
+patterns used for calibration as input. The program saves the point cloud thus
+obtained in a destination directory which is used by the \ac{3DTK} components
+for processing and visualization as shown below.
 
 \begin{verbatim}
 $ bin/projectionlaserscanner $SOURCE_DIR \
@@ -18,4 +22,5 @@ $ bin/slam6D $DESTINATION_DIR
 $ bin/show $DESTINATION_DIR
 \end{verbatim}
 
-The results thus obtained from the \texttt{show} program are shown in figure \ref{figure:results}.
+The results thus obtained from the \texttt{show} program are shown in figure
+\ref{figure:results}.
