@@ -10,6 +10,7 @@
 \usepackage{graphicx}
 \usepackage{subfigure}
 \usepackage{hyperref}
+\usepackage{eurosym}
 
 \renewcommand{\ttdefault}{cmtt}
 %----------------------------------------------------------------------
@@ -38,8 +39,7 @@
 
 \maketitle
 
-\begin{abstract}
-  This paper introduces a cross-platform low-cost system for 3D
+\begin{abstract} This paper introduces a cross-platform low-cost system for 3D
   object reconstruction using a projection-based laser scanner. It uses
   contact-free measurement techniques for 3D object reconstruction and fast
   surface registration using \ac{ICP} \cite{besl:1992}. The only hardware
@@ -49,8 +49,8 @@
   visible intersection with the known background is used to find the exact 3D
   pose of the laser plane. This laser plane is used to triangulate new 3D
   point coordinates of the object's surface. The point clouds obtained are
-  processed using "3DTK - The 3D Toolkit" \cite{3dtk:2012} which includes an
-  automatic high-accurate registration process and a fast 3D viewer.
+  processed using the "3DTK - The 3D Toolkit" \cite{3dtk:2012} which includes
+  an automatic high-accurate registration process and a fast 3D viewer.
 \end{abstract}
 
 \section{Introduction}
@@ -65,11 +65,11 @@
 \label{section:approach}
 \input{sections/approach}
 
-\section{Some Experimental Results}
+\section{Experimental Results}
 \label{section:results}
 \input{sections/results}
 
-\section{Conclusion}
+\section{Conclusion and Future Work}
 \label{section:conclusion}
 \input{sections/conclusion}
 

@@ -1,11 +1,11 @@
 \begin{figure}[ht!]
 \centering
-\subfigure{\includegraphics[width=.30\linewidth]{figures/results/100deg}}\quad
-\subfigure{\includegraphics[width=.30\linewidth]{figures/results/80deg}}\quad
-\subfigure{\includegraphics[width=.30\linewidth]{figures/results/60deg}}\\
-\subfigure{\includegraphics[width=.30\linewidth]{figures/results/40deg}}\quad
-\subfigure{\includegraphics[width=.30\linewidth]{figures/results/20deg}}\quad
-\subfigure{\includegraphics[width=.30\linewidth]{figures/results/0deg}}\\
+\subfigure{\includegraphics[width=.45\linewidth]{figures/results/100deg}}\quad
+\subfigure{\includegraphics[width=.45\linewidth]{figures/results/80deg}}\\
+\subfigure{\includegraphics[width=.45\linewidth]{figures/results/60deg}}\quad
+\subfigure{\includegraphics[width=.45\linewidth]{figures/results/40deg}}\\
+\subfigure{\includegraphics[width=.45\linewidth]{figures/results/20deg}}\quad
+\subfigure{\includegraphics[width=.45\linewidth]{figures/results/0deg}}\\
 \caption{Results}
 \label{figure:results}
 \end{figure}
@@ -14,17 +14,5 @@ The imaging system in addition to the source directory, expects a reference
 image without the laser stripe and two images of the individual background
 patterns used for calibration as input. The program saves the point cloud thus
 obtained in a destination directory which is used by the \ac{3DTK} components
-for processing and visualization as shown below.
-
-\begin{verbatim}
-$ bin/projectionlaserscanner $SOURCE_DIR \
-                             $REFERENCE_IMG \
-                             $LEFT_CHECKERBOARD_PATTERN \
-                             $RIGHT_CHECKERBOARD_PATTERN \
-                             $DESTINATION_DIR \
-$ bin/slam6D $DESTINATION_DIR
-$ bin/show $DESTINATION_DIR
-\end{verbatim}
-
-The results thus obtained from the \texttt{show} program are shown in figure
-\ref{figure:results}.
+for processing and visualization. The results obtained from the
+\texttt{show} program are shown in figure \ref{figure:results}.
