@@ -7,7 +7,7 @@
 {\includegraphics[width=.48\linewidth]{figures/difference-2}
 \label{subfigure:diff-B}} \\
 \subfigure[$Z$]
-{\includegraphics[width=.48\linewidth]{figures/difference-3}
+{\includegraphics[width=.48\linewidth]{figures/colorthres}
 \label{subfigure:diff-C}} \hfill
 \caption{Using Image Difference to Find the Laser}
 \label{figure:difference-image}
@@ -31,12 +31,12 @@ To reduce the noise in the difference image, we use the OpenCV routine
 \texttt{cvSmooth()} to convolve the image with a Gaussian kernel function. It
 not only helps to remove the camera artifacts but also reduces the information
 content in the image. In order to remove all outliers and keep just the pixels
-representing the red laser line as shown in Fig. \ref{figure:color-thres}, we
-use a pre-defined threshold value for the intensity of the red pixels. In
-order to restrict this thresholding only along the red channel, we use
-\texttt{cvSplit()} to split the three-channel (R,G,B) difference image into
-separate one-channel image planes. We use \texttt{cvGet2D()} and
-\texttt{cvSet2D()} to work on the scalar intensity values of the pixels.
+representing the red laser line, we use a pre-defined threshold value for the
+intensity of the red pixels. In order to restrict this thresholding only along
+the red channel, we use \texttt{cvSplit()} to split the three-channel (R,G,B)
+difference image into separate one-channel image planes. We use
+\texttt{cvGet2D()} and \texttt{cvSet2D()} to work on the scalar values of the
+pixels.
 
 %\begin{figure}[ht!]
 %\centering
@@ -50,17 +50,17 @@ separate one-channel image planes. We use \texttt{cvGet2D()} and
 %\label{figure:color-thres}
 %\end{figure}
 
-\begin{figure}[ht!]
-\centering
-\subfigure[Image with Outliers]
-{\includegraphics[width=.45\linewidth]{figures/gauss}
-\label{subfigure:colorthres-A}} \quad
-\subfigure[Image without Outliers]
-{\includegraphics[width=.45\linewidth]{figures/colorthres}
-\label{subfigure:colorthres-B}} \hfill
-\caption{Color Thresholding to Remove Outliers}
-\label{figure:color-thres}
-\end{figure}
+%\begin{figure}[ht!]
+%\centering
+%\subfigure[Image with Outliers]
+%{\includegraphics[width=.45\linewidth]{figures/gauss}
+%\label{subfigure:colorthres-A}} \quad
+%\subfigure[Image without Outliers]
+%{\includegraphics[width=.45\linewidth]{figures/colorthres}
+%\label{subfigure:colorthres-B}} \hfill
+%\caption{Color Thresholding to Remove Outliers}
+%\label{figure:color-thres}
+%\end{figure}
 
 We use the \ac{PPHT} \cite{kiryati:1991}, \cite{matas:2000} using the OpenCV
 routine \texttt{cvHoughLines2()} to detect the laser lines on both sides of
