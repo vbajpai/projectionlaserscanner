@@ -1,7 +1,7 @@
-We used a an inexpensive web camera to capture multiple runs of a hand-held
+We use an inexpensive web camera to capture multiple runs of a hand-held
 laser sweeping across the object as shown in Fig. \ref{figure:acquisition}.
-Since the videos were stored in raw format which cannot be directly processed
-by OpenCV \cite{bradski:2008}, we used \texttt{mplayer} to extract individual
+Since the videos are stored in a raw format which cannot be directly processed
+by OpenCV \cite{bradski:2008}, we use \texttt{mplayer} to extract individual
 frames at the rate of 5 frames per second.
 
 \begin{verbatim}
@@ -10,7 +10,7 @@ $ mplayer -demuxer rawvideo \
           -vo pnm:ppm $FILE
 \end{verbatim}
 
-These frames were then later read into memory by calling the OpenCV routine
+These frames are read into memory by calling the OpenCV routine
 \texttt{cvLoadImage()} with a \texttt{CV\_LOAD\_IMAGE\_UNCHANGED} flag. The
 routine allocates an image data structure and returns a pointer to a struct of
 type \texttt{IplImage}

@@ -1,6 +1,6 @@
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=0.9\linewidth]{figures/pointcloudpaper}
+\includegraphics[width=1.0\linewidth]{figures/pointcloudpaper}
 \caption{Laser Triangulation \cite{winkelbach:2006}}
 \label{figure:triangulation}
 \end{figure}
@@ -8,7 +8,7 @@
 The first step is to use the calculated camera extrinsics ($R \mid T$) for
 each side of the target object along with the intrinsic parameters ($A$) to
 transform each laser pixel ($P_c$) into 3D laser surface points ($P_w$) using
-equation \ref{equation:3dlaserpoint}. The laser pixel points are expressed in
+Eq. \ref{equation:3dlaserpoint}. The laser pixel points are expressed in
 the homogenous coordinate system.
 
 \begin{align}
@@ -40,9 +40,9 @@ the homogenous coordinate system.
   \text{and}~ s &= \frac{a_z}{b_z} \notag
 \end{align}
 
-Next in order to bring all the laser surface points into a common coordinate
-system, we transformed all the 3D laser points from the right side of the
-target object to the coordinate system of the left side using equation
+Next, in order to bring all the laser surface points into a common coordinate
+system, we transform all the 3D laser points from the right side of the
+target object to the coordinate system of the left side using Eq.
 \ref{equation:right2left}
 
 \begin{align}
@@ -56,25 +56,25 @@ target object to the coordinate system of the left side using equation
 
 With all the 3D laser surface points in a common coordinate system, we
 randomly choose 3 points to generate the laser plane equation. Using the
-coefficients of this equation, we defined the normal to the plane
-$(\overrightarrow{N})$ using equation \ref{equation:laserplaneequation}.
+coefficients of this equation, we define the normal to the plane
+$(\overrightarrow{N})$ using Eq. \ref{equation:laserplaneequation}.
 
 \begin{align}
 	\label{equation:laserplaneequation}
-	A_x + B_y + C_z + D &= 0 \\
+	E_x + F_y + G_z + H &= 0 \\
 	\text{where}~
 	 \overrightarrow{N} &=
 	 \begin{pmatrix}
-	  A \\
-	  B \\
-	  C \\
+	  E \\
+	  F \\
+	  G \\
 	 \end{pmatrix} \notag
 \end{align}
 
 The last step is to use the target object pixels $(P_c)$ and intersect them
 with the laser plane equation represented by the normal $(\overrightarrow{N})$
 to obtain the 3D surface points of the target object $(P_w)$ as shown in
-Fig. \ref{figure:triangulation} using equation \ref{equation:3dobjectpoint}
+Fig. \ref{figure:triangulation} using Eq. \ref{equation:3dobjectpoint}
 
 \begin{align}
 	\label{equation:3dobjectpoint}
@@ -92,8 +92,8 @@ Fig. \ref{figure:triangulation} using equation \ref{equation:3dobjectpoint}
 										 \end{pmatrix} \notag
 \end{align}
 
-In addition, we used OpenCV routine \texttt{cvGet2D()} to retrieve the RGB
-color information for each object pixel and mapped it to the calculated
-corresponding 3D object surface point. We used the reference image as the
-source for retrieving the original color information since that image does not
-have a laser line sweeping the target object.
+We also use the OpenCV routine \texttt{cvGet2D()} to retrieve the RGB color
+information for each object pixel and map it to the calculated corresponding
+3D object surface point. We use the reference image as the source for
+retrieving the original color information since that image does not have a
+laser line sweeping the target object.

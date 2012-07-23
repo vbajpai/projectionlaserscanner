@@ -1,39 +1,30 @@
 The first step in the process of reconstructing the 3D geometry of the object
 is to establish a mathematical relationship between the natural units of the
-camera with the physical units of the 3D world. We used camera calibration to
-learn the internal parameters of the camera and its distortion coefficients.
+camera with the physical units of the 3D world. We use camera calibration to
+estimate the internal parameters of the camera and its distortion coefficients.
 The geometry is described in terms of camera's optical center and focal
-length.
+length of the camera.
 
 \begin{figure}[ht!]
 \centering
-\subfigure{\includegraphics[width=.45\linewidth]{figures/calibrate-1}}\quad
-\subfigure{\includegraphics[width=.45\linewidth]{figures/calibrate-2}} \\
-\subfigure{\includegraphics[width=.45\linewidth]{figures/calibrate-3}}\quad
-\subfigure{\includegraphics[width=.45\linewidth]{figures/calibrate-4}}
+\subfigure{\includegraphics[width=.48\linewidth]{figures/calibrate-1}}\quad
+\subfigure{\includegraphics[width=.48\linewidth]{figures/calibrate-2}} \\
+\subfigure{\includegraphics[width=.48\linewidth]{figures/calibrate-3}}\quad
+\subfigure{\includegraphics[width=.48\linewidth]{figures/calibrate-4}}
 \caption{Calculating the Camera's Intrinsic Parameters}
 \label{figure:camera-calibration-intrinsics}
 \end{figure}
 
-We used OpenCV routines that are based on \cite{zhang:2000} \cite{brown:1971}
-and used a planar chessboard pattern as our calibration object. We rotated and
-translated the pattern to provide multiple views to get the precise
-information about the intrinsic parameters of the camera as shown in Fig.
-\ref{figure:camera-calibration-intrinsics}.  The OpenCV routine
+We use OpenCV camera calibration routines and a planar chessboard pattern as
+our calibration object. OpenCV uses Zhang's method \cite{zhang:2000} to
+calculate the focal lengths and offsets. However it uses Brown's method
+\cite{brown:1971} to calculate the distortion coefficients. The calibration
+pattern is rotated and translated to provide multiple views in order to get
+precise information about the intrinsic parameters of the camera as shown in
+Fig.  \ref{figure:camera-calibration-intrinsics}.  The OpenCV routine
 \texttt{cvFindChessboardCorners()} is used to locate the corners and once we
-had enough corners from multiple view images, we used
-\texttt{cvCalibrateCamera2()} to get the intrinsic matrix $A$ as shown in
-equation \ref{equation:calibrate}.
-
-\begin{figure}[ht!]
-\centering
-\subfigure[$R_1 \mid T_1$]
-{\includegraphics[width=.45\linewidth]{figures/calibrate-5}} \quad
-\subfigure[$R_2 \mid T_2$]
-{\includegraphics[width=.45\linewidth]{figures/calibrate-6}}
-\caption{Calculating the Camera's Extrinsic Parameters}
-\label{figure:camera-calibration-extrinsics}
-\end{figure}
+have enough corners from multiple images, we use \texttt{cvCalibrateCamera2()}
+to get the intrinsic matrix $A$ as shown in Eq. \ref{equation:calibrate}.
 
 \begin{align}
 	\label{equation:calibrate}
@@ -54,13 +45,22 @@ equation \ref{equation:calibrate}.
  		 	 \end{bmatrix} \notag
 \end{align}
 
-The intrinsic matrix $A$ was later used to describe the pose
-\footnote{combination of position and orientation} of the objects being
-scanned by the laser relative to the coordinate system of the camera. In order
-to determine this pose on both sides of the target object, the patterns were
-masked out to allow individual calculation as shown in Fig.
+The intrinsic matrix $A$ is later used to describe the pose of the object
+being scanned by the laser relative to the coordinate system of the camera. In
+order to determine this pose on both sides of the target object, the patterns
+are masked to allow individual calculation as shown in Fig.
 \ref{figure:camera-calibration-extrinsics}. The parameters represented by
-$\begin{bmatrix}R \mid T\end{bmatrix}$ could then be separately calculated for
-both the sides by calling the OpenCV routine
+$\begin{bmatrix}R \mid T\end{bmatrix}$ are then separately calculated for both
+the sides by calling the OpenCV routine
 \texttt{cvFindExtrinsicCameraParams2()}.
+
+\begin{figure}[ht!]
+\centering
+\subfigure[$R_1 \mid T_1$]
+{\includegraphics[width=.47\linewidth]{figures/calibrate-5}} \quad
+\subfigure[$R_2 \mid T_2$]
+{\includegraphics[width=.47\linewidth]{figures/calibrate-6}}
+\caption{Calculating the Camera's Extrinsic Parameters}
+\label{figure:camera-calibration-extrinsics}
+\end{figure}
 
