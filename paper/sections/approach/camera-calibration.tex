@@ -52,7 +52,8 @@ are masked to allow individual calculation as shown in Fig.
 \ref{figure:camera-calibration-extrinsics}. The parameters represented by
 $\begin{bmatrix}R \mid T\end{bmatrix}$ are then separately calculated for both
 the sides by calling the OpenCV routine
-\texttt{cvFindExtrinsicCameraParams2()}.
+\texttt{cvFindExtrinsicCameraParams2()}. $R$ and $T$ here refer to the rotation
+matrix and the translation vector respectively.
 
 \begin{figure}[ht!]
 \centering

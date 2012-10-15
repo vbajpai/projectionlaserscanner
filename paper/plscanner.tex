@@ -17,7 +17,8 @@
 
 \begin{document}
 
-\title{A Portable Low-Cost Archaeological 3D Imaging and Cataloging System}
+\title{A Cross-Platform Open Source 3D Object Reconstruction System using
+a Laser Line Projector}
 
 \author{
   Vaibhav Bajpai and Vladislav Perelman \\
@@ -32,12 +33,12 @@
   object reconstruction using a projection-based laser scanner. It uses
   contact-free measurement techniques for 3D object reconstruction and fast
   surface registration using \ac{ICP} \cite{besl:1992}. The only hardware
-  requirements are a simple hand-held laser line projector and a standard
-  camera. The camera is initially calibrated using Zhang's camera calibration
-  method so that its external and internal parameters are exactly known. The
-  visible intersection with the known background is used to find the exact 3D
-  pose of the laser plane. This laser plane is used to triangulate new 3D
-  point coordinates of the object's surface. The point clouds obtained are
+  requirements are a simple hand-held laser line projector, a calibration rig
+  and a standard camera. The camera is initially calibrated using Zhang's
+  camera calibration method so that its external and internal parameters are
+  known. The visible intersection with the known background is used to find
+  the 3D pose of the laser plane. This laser plane is used to triangulate new
+  3D point coordinates of the object's surface. The point clouds obtained are
   processed using the "3DTK - The 3D Toolkit" \cite{3dtk:2012} which includes
   an automatic high-accurate registration process and a fast 3D viewer.
 \end{abstract}

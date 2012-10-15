@@ -67,7 +67,7 @@ routine \texttt{cvHoughLines2()} to detect the laser lines on both sides of
 the target object. The line end points of each line thus obtained are used to
 draw the line using \texttt{cvLine()} as shown in Fig.
 \ref{figure:hough-transform}.  The difference image is initially passed
-through an edge detection phase, since the hough transform not only expects a
+through an edge detection phase, since hough transform not only expects a
 gray-scale image as input but the input is also treated as binary information
 where the non-zero points are edge points of the image. Therefore, we use the
 OpenCV routine \texttt{cvCvtColor} to convert the RGB difference image to gray
