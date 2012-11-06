@@ -30,12 +30,6 @@ Running
 	>> bin/plscanner
 
 
-Target Conference
------------------
-- - -
-* [IEEE Germany Student Conference 2012](www.ieee-student-conference.de/)  
-  Deadline July 23, 2012
-
 Methodology
 -----------
 - - -
@@ -64,8 +58,6 @@ Methodology
     * Get the 3D Object Point by intersecting the Laser Plane with Light Ray
     * Save the 3D Object Points with their color values using Reference Image
 * Register different scans using Slam6D/ICP
-
-![Imgur](http://i.imgur.com/obTwO.png)
 
 Documents
 ---------
